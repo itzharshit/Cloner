@@ -5,7 +5,7 @@ from pyrogram import filters
 
 
 import pyrogram
-from pyrogram import filters
+from pyrogram import filters, Client
 
 import time
 import os
