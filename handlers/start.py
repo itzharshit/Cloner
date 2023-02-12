@@ -1,5 +1,3 @@
-
-
 from pyrogram import Client
 from pyrogram.types import *
 from pyrogram import filters
@@ -17,10 +15,9 @@ import threading
 bot_token = os.environ.get("TOKEN", "") 
 api_hash = os.environ.get("HASH", "") 
 api_id = os.environ.get("ID", "")
-ss = os.environ.get("STRING", "")
+#ss = os.environ.get("STRING", "")
 #bot = Client("mybot",api_id=api_id,api_hash=api_hash,bot_token=bot_token)
 acc = Client("myacc",api_id=api_id,api_hash=api_hash,session_string=ss)
-
 
 # download status
 def downstatus(statusfile,message):
@@ -69,13 +66,9 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
     if "https://t.me/+" in message.text or "https://t.me/joinchat/" in message.text:
 
         try:
-            with acc:
-                acc.join_chat(message.text)
-            Client.send_message(message.chat.id,"**Chat Joined**", reply_to_message_id=message.id)
-        except UserAlreadyParticipant:
-            Client.send_message(message.chat.id,"**Chat alredy Joined**", reply_to_message_id=message.id)
-        except InviteHashExpired:
-            Client.send_message(message.chat.id,"**Invalid Link**", reply_to_message_id=message.id)
+           Client.send_message(message.chat.id,"**Private chats are not supported yet", reply_to_message_id=message.id)
+        except:
+            Client.send_message(message.chat.id,"**Error occured**", reply_to_message_id=message.id)
     
     # getting message
     elif "https://t.me/" in message.text:
@@ -85,8 +78,9 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
 
         # private
         if "https://t.me/c/" in message.text:
-            chatid = int("-100" + datas[-2])
-
+            #chatid = int("-100" + datas[-2])
+            Client.send_message(message.chat.id, "private links not supported.", entities=msg.entities, reply_to_message_id=message.id)
+"""
             with acc:
                 msg  = acc.get_messages(chatid,msgid)
 
@@ -152,6 +146,7 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
             Client.delete_messages(message.chat.id,[smsg.id])
                 
         
+"""
         # public
         else:
             username = datas[-2]
