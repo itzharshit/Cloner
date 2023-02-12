@@ -12,51 +12,9 @@ import time
 import os
 import threading
 
-#bot_token = os.environ.get("TOKEN", "") 
-#api_hash = os.environ.get("HASH", "") 
-#api_id = os.environ.get("ID", "")
-#ss = os.environ.get("STRING", "")
-#bot = Client("mybot",api_id=api_id,api_hash=api_hash,bot_token=bot_token)
-#acc = Client("myacc",api_id=api_id,api_hash=api_hash,session_string=ss)
-
-# download status
-def downstatus(statusfile,message):
-    while True:
-        if os.path.exists(statusfile):
-            break
-
-    time.sleep(3)      
-    while os.path.exists(statusfile):
-        with open(statusfile,"r") as downread:
-            txt = downread.read()
-        try:
-            Client.edit_message_text(message.chat.id, message.id, f"__Downloaded__ : **{txt}**")
-            time.sleep(10)
-        except:
-            time.sleep(5)
-
-
-# upload status
-def upstatus(statusfile,message):
-    while True:
-        if os.path.exists(statusfile):
-            break
-
-    time.sleep(3)      
-    while os.path.exists(statusfile):
-        with open(statusfile,"r") as upread:
-            txt = upread.read()
-        try:
-            Client.edit_message_text(message.chat.id, message.id, f"__Uploaded__ : **{txt}**")
-            time.sleep(10)
-        except:
-            time.sleep(5)
-
-
-# progress writter
-def progress(current, total, message, type):
-    with open(f'{message.id}{type}status.txt',"w") as fileup:
-        fileup.write(f"{current * 100 / total:.1f}%")
+@Client.on_message(filters.private & filters.command("start"))
+async def start(client: Client, message: Message):
+    await message.reply("Hey! It's Just a Cloner Bot example source Code")
 
 
 @Client.on_message(filters.text)
