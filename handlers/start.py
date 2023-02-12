@@ -12,12 +12,12 @@ import time
 import os
 import threading
 
-bot_token = os.environ.get("TOKEN", "") 
-api_hash = os.environ.get("HASH", "") 
-api_id = os.environ.get("ID", "")
+#bot_token = os.environ.get("TOKEN", "") 
+#api_hash = os.environ.get("HASH", "") 
+#api_id = os.environ.get("ID", "")
 #ss = os.environ.get("STRING", "")
 #bot = Client("mybot",api_id=api_id,api_hash=api_hash,bot_token=bot_token)
-acc = Client("myacc",api_id=api_id,api_hash=api_hash,session_string=ss)
+#acc = Client("myacc",api_id=api_id,api_hash=api_hash,session_string=ss)
 
 # download status
 def downstatus(statusfile,message):
