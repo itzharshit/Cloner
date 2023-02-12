@@ -1,4 +1,4 @@
 tgcrypto
 requests
-pyrogram==1.4.16
+pyrogram
 python-dotenv
