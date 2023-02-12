@@ -16,6 +16,9 @@ import threading
 #api_id = os.environ.get("ID", "6")
 #bot = Client("mybot",api_id=api_id,api_hash=api_hash,bot_token=bot_token)
 
+@Client.on_message(filters.private & filters.command("start"))
+async def start(client: Client, message: Message):
+    await message.reply("Hey! It's Just a Cloner Bot example source Code")
 
 
 
@@ -64,4 +67,4 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
 
 
 # infinty polling
-bot.run()
+#bot.run()
