@@ -22,13 +22,9 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
 
     # joining chats
     if "https://t.me/+" in message.text or "https://t.me/joinchat/" in message.text:
-
-        try:
-           Client.send_message(message.chat.id,"**Private chats are not supported yet", reply_to_message_ids=message.id)
-        except:
-            Client.send_message(message.chat.id,"**Error occured**", reply_to_message_id=message.id)
-    
-    # getting message
+        await message.reply("its pvt")
+ 
+   # getting message
     elif "https://t.me/" in message.text:
 
         datas = message.text.split("/")
