@@ -33,7 +33,7 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
         # private
         if "https://t.me/c/" in message.text:
             #chatid = int("-100" + datas[-2])
-            message.reply(message.chat.id, "private links not supported.", entities=msg.entities, reply_to_message_ids=message.id)
+            message.reply("private links not supported.")
 
         else:
             username = datas[-2]
@@ -58,7 +58,7 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
                 Client.send_audio(message.chat.id, msg.audio.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)    
 
             elif "text" in str(msg):
-                message.reply(message.chat.id, msg.text, entities=msg.entities, reply_to_message_id=message.id)
+                message.reply(msg.text)
 
             elif "Photo" in str(msg):
                 Client.send_photo(message.chat.id, msg.photo.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)
