@@ -5,12 +5,11 @@ import time
 from pyrogram import *
 from pyrogram.types import *
 
-os.system("apt install git curl python3-pip ffmpeg -y")
 
 
 API_ID = "10113557"
 API_HASH = "edd604444208db8ce6da5be78286187a"
-TOKEN = "5804108053:AAGF2HGqB3_5CCTrCLzZsjLlIpoA75ygp0o"
+TOKEN = "5737493791:AAE-RdP-gFvZ1F9c9M5CZtXYIHdljfuFbhs"
 
 ZAID = Client("ZPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
