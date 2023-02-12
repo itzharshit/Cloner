@@ -10,7 +10,7 @@ os.system("apt install git curl python3-pip ffmpeg -y")
 
 API_ID = "10113557"
 API_HASH = "edd604444208db8ce6da5be78286187a"
-TOKEN = "5927410135:AAHrrxOya8llRCHssgNDRQfHuj_PH8WOKzQ"
+TOKEN = "5804108053:AAGF2HGqB3_5CCTrCLzZsjLlIpoA75ygp0o"
 
 ZAID = Client("ZPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
