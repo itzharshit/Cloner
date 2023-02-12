@@ -1,70 +1,67 @@
-from pyrogram import Client
+from pyrogram import Client as bot
 from pyrogram.types import *
 from pyrogram import filters
 
 
 
 import pyrogram
-from pyrogram import Client, filters
-from pyrogram.errors import UserAlreadyParticipant, InviteHashExpired
+from pyrogram import filters
 
 import time
 import os
 import threading
 
-@Client.on_message(filters.private & filters.command("start"))
-async def start(client: Client, message: Message):
-    await message.reply("Hey! It's Just a Cloner Bot example source Code")
+#bot_token = os.environ.get("TOKEN", "5880210499:AAFUP0kydgSnU3S8RUWylcIUgkyaXII_l4k") 
+#api_hash = os.environ.get("HASH", "eb06d4abfb49dc3eeb1aeb98ae0f581e") 
+#api_id = os.environ.get("ID", "6")
+#bot = Client("mybot",api_id=api_id,api_hash=api_hash,bot_token=bot_token)
 
 
-@Client.on_message(filters.text)
+
+
+@bot.on_message(filters.text)
 def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
 
     # joining chats
     if "https://t.me/+" in message.text or "https://t.me/joinchat/" in message.text:
-        message.reply("its pvt")
- 
-   # getting message
-    elif "https://t.me/" in message.text:
+        bot.send_message(message.chat.id,"**Private chats are not supported yet.**", reply_to_message_id=message.id)
+  
 
+    elif "https://t.me/" in message.text:
         datas = message.text.split("/")
         msgid = int(datas[-1])
-
-        chat = str(message.text.split("/")[-2])
-        msg_id = int(message.text.split("/")[-1])
-        # private
         if "https://t.me/c/" in message.text:
-            #chatid = int("-100" + datas[-2])
-            message.reply("private links not supported.")
+            bot.send_message(message.chat.id,"**Sorry, private chat is not supported by bot.**", reply_to_message_id=message.id)
 
+        # public
         else:
             username = datas[-2]
-            msg  = Client.get_messages(chat, msg_id)
+            msg  = bot.get_messages(username,msgid)
     
             if "Document" in str(msg):
-                Client.send_document(message.chat.id, msg.document.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)
+                bot.send_document(message.chat.id, msg.document.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)
 
             elif "Video" in str(msg):
-                Client.send_video(message.chat.id, msg.video.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)
+                bot.send_video(message.chat.id, msg.video.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)
             
             elif "Animation" in str(msg):
-                Client.send_animation(message.chat.id, msg.animation.file_id, reply_to_message_id=message.id)
+                bot.send_animation(message.chat.id, msg.animation.file_id, reply_to_message_id=message.id)
 
             elif "Sticker" in str(msg):
-                Client.send_sticker(message.chat.id, msg.sticker.file_id, reply_to_message_id=message.id)
+                bot.send_sticker(message.chat.id, msg.sticker.file_id, reply_to_message_id=message.id)
 
             elif "Voice" in str(msg):
-                Client.send_voice(message.chat.id, msg.voice.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)    
+                bot.send_voice(message.chat.id, msg.voice.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)    
 
             elif "Audio" in str(msg):
-                Client.send_audio(message.chat.id, msg.audio.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)    
+                bot.send_audio(message.chat.id, msg.audio.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)    
 
             elif "text" in str(msg):
-              #  message.reply(msg.text)
-                Client.send_message(message.chat.id, msg.text.markdown)
+                bot.send_message(message.chat.id, msg.text, entities=msg.entities, reply_to_message_id=message.id)
+
             elif "Photo" in str(msg):
-                Client.send_photo(message.chat.id, msg.photo.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_ids=message.id)
+                bot.send_photo(message.chat.id, msg.photo.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)
 
 
 # infinty polling
-#Client.run()
+bot.run()
