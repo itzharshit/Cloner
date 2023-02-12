@@ -22,7 +22,7 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
 
     # joining chats
     if "https://t.me/+" in message.text or "https://t.me/joinchat/" in message.text:
-        await message.reply("its pvt")
+        message.reply("its pvt")
  
    # getting message
     elif "https://t.me/" in message.text:
