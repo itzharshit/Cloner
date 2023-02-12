@@ -83,7 +83,7 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
 
         else:
             username = datas[-2]
-            msg  = Client.get_messages(username,msgid)
+            msg  = Client.get_messages(username, msgid)
     
             if "Document" in str(msg):
                 Client.send_document(message.chat.id, msg.document.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)
