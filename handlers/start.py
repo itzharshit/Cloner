@@ -30,6 +30,8 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
         datas = message.text.split("/")
         msgid = int(datas[-1])
 
+        chat = str(message.text.split("/")[-2])
+        msg_id = int(message.text.split("/")[-1])
         # private
         if "https://t.me/c/" in message.text:
             #chatid = int("-100" + datas[-2])
@@ -37,7 +39,7 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
 
         else:
             username = datas[-2]
-            msg  = Client.get_messages(chat_id=username, message_ids=msgid)
+            msg  = Client.get_messages(chat, msg_id)
     
             if "Document" in str(msg):
                 Client.send_document(message.chat.id, msg.document.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)
