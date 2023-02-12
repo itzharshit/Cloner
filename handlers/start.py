@@ -79,7 +79,7 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
         # private
         if "https://t.me/c/" in message.text:
             #chatid = int("-100" + datas[-2])
-            Client.send_message(message.chat.id, "private links not supported.", entities=msg.entities, reply_to_message_id=message.id)
+            Client.send_message(message.chat.id, "private links not supported.", entities=msg.entities, reply_to_message_ids=message.id)
 
         else:
             username = datas[-2]
