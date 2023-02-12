@@ -58,8 +58,8 @@ def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_me
                 Client.send_audio(message.chat.id, msg.audio.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)    
 
             elif "text" in str(msg):
-                message.reply(msg.text)
-
+              #  message.reply(msg.text)
+                Client.send_message(message.chat.id, msg.text.markdown)
             elif "Photo" in str(msg):
                 Client.send_photo(message.chat.id, msg.photo.file_id, caption=msg.caption, caption_entities=msg.caption_entities, reply_to_message_id=message.id)
 
